@@ -1,0 +1,29 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: var(--default-layout-header-height);
+	box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+}
+
+.inner {
+	display: flex;
+	align-items: center;
+	width: var(--default-layout-width);
+	height: 100%;
+	background-color: #ddd;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 0 20px;
+}
+
+.nav__item {
+	margin-right: 10px;
+	text-decoration: none;
+	font-weight: 600;
+}
