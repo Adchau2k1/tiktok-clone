@@ -1,41 +1,30 @@
-import { Link } from 'react-router-dom'
 import className from 'classnames/bind'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss'
+import images from '~/assets/images'
 
 const cx = className.bind(styles)
 
 function Header() {
 	return (
 		<header className={cx('wrapper')}>
-			<nav className={cx('inner')}>
-				<ul className={cx('nav')}>
-					<li>
-						<Link className={cx('nav__item')} to="/">
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link className={cx('nav__item')} to="/search">
-							Search
-						</Link>
-					</li>
-					<li>
-						<Link className={cx('nav__item')} to="/following">
-							Follow
-						</Link>
-					</li>
-					<li>
-						<Link className={cx('nav__item')} to="/upload">
-							Upload
-						</Link>
-					</li>
-					<li>
-						<Link className={cx('nav__item')} to="/profile">
-							Profile
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<div className={cx('logo')}>
+				<div className={cx('inner')}>
+					<img src={images.logo} alt="Logo" />
+					<div className={cx('search')}>
+						<input placeholder="Tìm kiếm tài khoản và video" />
+						<button className={cx('clear')}>
+							<FontAwesomeIcon icon={faCircleXmark} />
+						</button>
+						<FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+						<button className={cx('search-btn')}>
+							<FontAwesomeIcon icon={faMagnifyingGlass} />
+						</button>
+					</div>
+					<div className={cx('actions')}></div>
+				</div>
+			</div>
 		</header>
 	)
 }

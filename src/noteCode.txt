@@ -1,0 +1,45 @@
+// Code navbar test routes
+// JSX
+<nav className={cx('inner')}>
+    <ul className={cx('nav')}>
+        <li>
+            <Link className={cx('nav__item')} to="/">
+                Home
+            </Link>
+        </li>
+        <li>
+            <Link className={cx('nav__item')} to="/search">
+                Search
+            </Link>
+        </li>
+        <li>
+            <Link className={cx('nav__item')} to="/following">
+                Follow
+            </Link>
+        </li>
+        <li>
+            <Link className={cx('nav__item')} to="/upload">
+                Upload
+            </Link>
+        </li>
+        <li>
+            <Link className={cx('nav__item')} to="/profile">
+                Profile
+            </Link>
+        </li>
+    </ul>
+</nav>
+
+// Css
+.nav {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 0 20px;
+}
+
+.nav__item {
+	margin-right: 10px;
+	text-decoration: none;
+	font-weight: 600;
+}
