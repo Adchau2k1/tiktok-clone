@@ -43,7 +43,7 @@
 		padding: 12px 0;
 		height: 100%;
 		background-color: transparent;
-		color: var(--black);
+		color: var(--black-color);
 		caret-color: var(--primary-color);
 		font-size: 1.6rem;
 	}
@@ -102,4 +102,14 @@ input:not(:placeholder-shown) ~ .search-btn {
 	font-weight: 600;
 	font-size: 1.4rem;
 	color: rgba(22, 24, 35, 0.5);
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+}
+
+// custom button theo ý tại bất kỳ vị trí nào
+.custom-login {
+	color: green;
 }

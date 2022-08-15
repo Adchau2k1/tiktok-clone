@@ -1,17 +1,23 @@
 import { useState } from 'react'
 import className from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import {
+	faCircleXmark,
+	faMagnifyingGlass,
+	faPlus,
+	faSpinner,
+} from '@fortawesome/free-solid-svg-icons'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
+import Button from '~/components/Button'
 
 const cx = className.bind(styles)
 
 function Header() {
-	const [searchResult, setSearchResult] = useState([1])
+	const [searchResult, setSearchResult] = useState([])
 
 	return (
 		<header className={cx('wrapper')}>
@@ -47,7 +53,14 @@ function Header() {
 						</div>
 					</Tippy>
 
-					<div className={cx('actions')}></div>
+					<div className={cx('actions')}>
+						<Button icon={{ at: 'left', className: `icon`, name: faPlus }} outline text>
+							Tải lên
+						</Button>
+
+						{/* custom button add: className={cx('custom-login')} */}
+						<Button primary>Đăng nhập</Button>
+					</div>
 				</div>
 			</div>
 		</header>
