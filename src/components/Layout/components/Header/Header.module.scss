@@ -1,23 +1,24 @@
 .wrapper {
-	--search-height: 46px;
-	--search-double-spacer: 18px;
-	--search-button-width: 52px;
+    --search-height: 46px;
+    --search-double-spacer: 18px;
+    --search-button-width: 52px;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: var(--default-layout-header-height);
-	box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: var(--default-layout-header-height);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
 }
 
 .inner {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: var(--default-layout-width);
-	height: 100%;
-	padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--default-layout-width);
+    height: 100%;
+    padding: 0 28px;
 }
 
 .logo {
@@ -25,91 +26,109 @@
 
 .search,
 .search-result {
-	width: 361px;
+    width: 361px;
 }
 
 .search {
-	position: relative;
-	display: flex;
-	height: var(--search-height);
-	padding-left: 16px;
-	border-radius: 92px;
-	background-color: rgba(22, 24, 35, 0.06);
-	border: 1.5px solid transparent;
-	overflow: hidden;
+    position: relative;
+    display: flex;
+    height: var(--search-height);
+    padding-left: 16px;
+    border-radius: 92px;
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1.5px solid transparent;
+    overflow: hidden;
 
-	input {
-		flex: 1;
-		padding: 12px 0;
-		height: 100%;
-		background-color: transparent;
-		color: var(--black-color);
-		caret-color: var(--primary-color);
-		font-size: 1.6rem;
-	}
+    input {
+        flex: 1;
+        padding: 12px 0;
+        height: 100%;
+        background-color: transparent;
+        color: var(--black-color);
+        caret-color: var(--primary-color);
+        font-size: 1.6rem;
+    }
 
-	&::after {
-		position: absolute;
-		content: '';
-		width: 1px;
-		top: calc(var(--search-double-spacer) / 3);
-		right: var(--search-button-width);
-		height: calc(var(--search-height) - var(--search-double-spacer));
-		background-color: rgba(22, 24, 35, 0.12);
-	}
+    &::after {
+        position: absolute;
+        content: '';
+        width: 1px;
+        top: calc(var(--search-double-spacer) / 3);
+        right: var(--search-button-width);
+        height: calc(var(--search-height) - var(--search-double-spacer));
+        background-color: rgba(22, 24, 35, 0.12);
+    }
 
-	&:focus-within {
-		border-color: rgba(22, 24, 35, 0.2);
-	}
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
 }
 
 input:not(:placeholder-shown) ~ .search-btn {
-	color: rgba(22, 24, 35, 0.75);
+    color: rgba(22, 24, 35, 0.75);
 }
 
 .clear,
 .loading {
-	position: absolute;
-	top: 50%;
-	right: calc(var(--search-button-width) + 16px);
-	transform: translateY(-50%);
-	font-size: 1.6rem;
-	color: rgba(22, 24, 35, 0.34);
+    position: absolute;
+    top: 50%;
+    right: calc(var(--search-button-width) + 16px);
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    color: rgba(22, 24, 35, 0.34);
 }
 
 .loading {
-	display: none;
+    display: none;
 }
 
 .search-btn {
-	width: var(--search-button-width);
-	height: 100%;
-	font-size: 1.9rem;
-	color: rgba(22, 24, 35, 0.34);
+    width: var(--search-button-width);
+    height: 100%;
+    font-size: 1.9rem;
+    color: rgba(22, 24, 35, 0.34);
 
-	&:hover {
-		cursor: pointer;
-		background-color: rgba(22, 24, 35, 0.03);
-	}
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
 
-	&:active {
-		background-color: rgba(22, 24, 35, 0.06);
-	}
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
 }
 
 .title {
-	padding: 5px 12px;
-	font-weight: 600;
-	font-size: 1.4rem;
-	color: rgba(22, 24, 35, 0.5);
+    padding: 5px 12px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: rgba(22, 24, 35, 0.5);
 }
 
 .actions {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 // custom button theo ý tại bất kỳ vị trí nào
 .custom-login {
-	color: green;
+    color: green;
+}
+
+.more-btn {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    padding: 0 4px;
+    font-size: 1.6rem;
+    background-color: transparent;
+
+    svg {
+        height: 100%;
+        color: rgba(22, 24, 35, 1);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 }
