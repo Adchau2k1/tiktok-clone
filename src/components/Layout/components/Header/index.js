@@ -18,13 +18,29 @@ import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
+import MenuItem from '~/components/Popper/Menu/MenuItem'
 
 const cx = className.bind(styles)
 
 const MENU_ITEM = [
     {
         icon: { at: 'left', className: 'icon', name: faEarthAsia },
-        title: 'Tieng Viet',
+        title: 'Tiếng Việt',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
         icon: { at: 'left', className: 'icon', name: faQuestionCircle },
@@ -39,6 +55,14 @@ const MENU_ITEM = [
 
 function Header() {
     const [searchResult, setSearchResult] = useState('')
+
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                console.log(1)
+            default:
+        }
+    }
 
     return (
         <header className={cx('wrapper')}>
@@ -86,7 +110,7 @@ function Header() {
                         {/* custom button add: className={cx('custom-login')} */}
                         <Button primary>Đăng nhập</Button>
 
-                        <Menu items={MENU_ITEM}>
+                        <Menu items={MENU_ITEM} onChange={handleMenuChange}>
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
                             </button>
