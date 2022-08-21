@@ -83,6 +83,9 @@ input:not(:placeholder-shown) ~ .search-btn {
 }
 
 .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--search-button-width);
     height: 100%;
     font-size: 1.9rem;
@@ -135,10 +138,10 @@ input:not(:placeholder-shown) ~ .search-btn {
 }
 
 .actions-btn {
+    display: flex;
     margin-left: 16px;
     background-color: transparent;
     font-size: 2.1rem;
-    padding: 4px 5px;
     cursor: pointer;
 }
 
@@ -149,4 +152,17 @@ input:not(:placeholder-shown) ~ .search-btn {
     height: 32px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+// Notify
+.notify-current {
+    display: flex;
+    justify-content: center;
+    min-width: 24px;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0 4px;
 }

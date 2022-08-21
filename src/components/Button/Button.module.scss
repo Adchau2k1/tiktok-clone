@@ -2,13 +2,14 @@
     display: inline-flex;
     align-items: center;
     min-width: 60px;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 4px;
     border: 1px solid transparent;
     color: var(--text-color);
     background-color: var(--white-color);
     font-weight: 600;
     font-size: 1.6rem;
+    font-family: 'IBM Plex Sans', ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
     cursor: pointer;
     user-select: none;
 
@@ -52,6 +53,7 @@
     background-color: var(--primary-color);
     color: var(--white-color);
     border-color: var(--primary-color);
+    padding: 8px;
 
     &:hover {
         border-color: var(--primary-color);

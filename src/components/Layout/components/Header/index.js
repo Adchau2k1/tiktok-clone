@@ -3,7 +3,6 @@ import className from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faCircleXmark,
-    faMagnifyingGlass,
     faPlus,
     faSpinner,
     faEllipsisVertical,
@@ -13,10 +12,8 @@ import {
     faUser,
     faCoins,
     faCog,
-    faLongArrowAltRight,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons'
-import { faPaperPlane, faCommentAlt } from '@fortawesome/free-regular-svg-icons'
 import Tippy from '@tippyjs/react'
 import HeadlessTippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
@@ -26,6 +23,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
+import { InboxIcon, MessagesIcon, SearchIcon } from '~/components/Icons'
+import Image from '~/components/Image'
 
 const cx = className.bind(styles)
 
@@ -34,7 +33,7 @@ const MENU_ITEM = [
         icon: { at: 'left', className: 'icon', name: faEarthAsia },
         title: 'Tiếng Việt',
         children: {
-            title: 'Language',
+            title: 'Ngôn ngữ',
             data: [
                 {
                     type: 'language',
@@ -51,18 +50,19 @@ const MENU_ITEM = [
     },
     {
         icon: { at: 'left', className: 'icon', name: faQuestionCircle },
-        title: 'Phan hoi va tro giup',
+        title: 'Phản hồi và trợ giúp',
         to: '/feedback',
     },
     {
         icon: { at: 'left', className: 'icon', name: faKeyboard },
-        title: 'Phim tat tren ban phim',
+        title: 'Phím tắt trên bàn phím',
     },
 ]
 
 function Header() {
     const currentUser = true
     const [searchResult, setSearchResult] = useState('')
+    const [currentInbox, setCurrentInbox] = useState(20)
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -132,7 +132,7 @@ function Header() {
                             </button>
                             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
                             <button className={cx('search-btn')}>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                <SearchIcon />
                             </button>
                         </div>
                     </HeadlessTippy>
@@ -149,16 +149,30 @@ function Header() {
                                 </Button>
                                 <Tippy content='Tin nhắn'>
                                     <button className={cx('actions-btn')}>
-                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                        <MessagesIcon width='26px' height='26px' />
                                     </button>
                                 </Tippy>
-                                <Tippy content='Hộp thư'>
-                                    <button className={cx('actions-btn')}>
-                                        <FontAwesomeIcon icon={faCommentAlt} />
-                                    </button>
-                                </Tippy>
+                                <HeadlessTippy
+                                    offset={[13, -15]}
+                                    visible={currentInbox > 0}
+                                    render={(attrs) => (
+                                        <div
+                                            className={cx('notify-current')}
+                                            tabIndex='-1'
+                                            {...attrs}
+                                        >
+                                            {currentInbox}
+                                        </div>
+                                    )}
+                                >
+                                    <Tippy content='Hộp thư'>
+                                        <button className={cx('actions-btn')}>
+                                            <InboxIcon />
+                                        </button>
+                                    </Tippy>
+                                </HeadlessTippy>
                                 <Menu items={userMenu} onChange={handleMenuChange}>
-                                    <img
+                                    <Image
                                         className={cx('user-avatar')}
                                         alt=''
                                         src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/13f5ab14e955909ef3cc0fa9c01965ef~c5_100x100.jpeg?x-expires=1661270400&x-signature=7tqLA3zjzY18PPc9MazP8gS724E%3D'
