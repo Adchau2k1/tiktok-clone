@@ -2,9 +2,7 @@ import { useState } from 'react'
 import className from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faCircleXmark,
     faPlus,
-    faSpinner,
     faEllipsisVertical,
     faEarthAsia,
     faQuestionCircle,
@@ -15,16 +13,14 @@ import {
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons'
 import Tippy from '@tippyjs/react'
-import HeadlessTippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
 import 'tippy.js/dist/tippy.css'
 import images from '~/assets/images'
-import { Wrapper as PopperWrapper } from '~/components/Popper'
-import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
-import { InboxIcon, MessagesIcon, SearchIcon } from '~/components/Icons'
+import { InboxIcon, MessagesIcon } from '~/components/Icons'
 import Image from '~/components/Image'
+import Search from '../Search'
 
 const cx = className.bind(styles)
 
@@ -61,8 +57,7 @@ const MENU_ITEM = [
 
 function Header() {
     const currentUser = true
-    const [searchResult, setSearchResult] = useState('')
-    const [currentInbox, setCurrentInbox] = useState(20)
+    const [currentInbox, setCurrentInbox] = useState(25)
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -103,40 +98,7 @@ function Header() {
             <div className={cx('logo')}>
                 <div className={cx('inner')}>
                     <img src={images.logo} alt='Logo' />
-
-                    <HeadlessTippy
-                        interactive
-                        offset={[0, 8]}
-                        visible={searchResult.length > 0}
-                        render={(attrs) => (
-                            <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-                                <PopperWrapper>
-                                    <h4 className={cx('title')}>Tài khoản</h4>
-                                    <AccountItem />
-                                    <AccountItem />
-                                    <AccountItem />
-                                    <AccountItem />
-                                    <AccountItem />
-                                </PopperWrapper>
-                            </div>
-                        )}
-                    >
-                        <div className={cx('search')}>
-                            <input
-                                value={searchResult}
-                                onChange={(e) => setSearchResult(e.target.value)}
-                                placeholder='Tìm kiếm tài khoản và video'
-                            />
-                            <button className={cx('clear')}>
-                                <FontAwesomeIcon icon={faCircleXmark} />
-                            </button>
-                            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                            <button className={cx('search-btn')}>
-                                <SearchIcon />
-                            </button>
-                        </div>
-                    </HeadlessTippy>
-
+                    <Search />
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
@@ -152,25 +114,14 @@ function Header() {
                                         <MessagesIcon width='26px' height='26px' />
                                     </button>
                                 </Tippy>
-                                <HeadlessTippy
-                                    offset={[13, -15]}
-                                    visible={currentInbox > 0}
-                                    render={(attrs) => (
-                                        <div
-                                            className={cx('notify-current')}
-                                            tabIndex='-1'
-                                            {...attrs}
-                                        >
-                                            {currentInbox}
-                                        </div>
-                                    )}
-                                >
-                                    <Tippy content='Hộp thư'>
-                                        <button className={cx('actions-btn')}>
-                                            <InboxIcon />
-                                        </button>
-                                    </Tippy>
-                                </HeadlessTippy>
+                                <Tippy content='Hộp thư'>
+                                    <button className={cx('actions-btn')}>
+                                        <InboxIcon />
+                                        {currentInbox > 0 && (
+                                            <span className={cx('badge')}>{currentInbox}</span>
+                                        )}
+                                    </button>
+                                </Tippy>
                                 <Menu items={userMenu} onChange={handleMenuChange}>
                                     <Image
                                         className={cx('user-avatar')}
