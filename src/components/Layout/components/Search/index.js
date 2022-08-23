@@ -23,6 +23,13 @@ function Search() {
     const inputRef = useRef()
     const debounced = useDebounce(searchValue, 500)
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue)
+        }
+    }
+
     const handleClear = () => {
         setSearchValue('')
         setSearchResult([])
@@ -69,7 +76,7 @@ function Search() {
                 <input
                     ref={inputRef}
                     value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                     placeholder='Tìm kiếm tài khoản và video'
                 />
@@ -79,7 +86,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

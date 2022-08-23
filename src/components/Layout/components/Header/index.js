@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import className from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -13,6 +14,8 @@ import {
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons'
 import Tippy from '@tippyjs/react'
+
+import routes from '~/config/routes'
 import styles from './Header.module.scss'
 import 'tippy.js/dist/tippy.css'
 import images from '~/assets/images'
@@ -95,62 +98,64 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('logo')}>
-                <div className={cx('inner')}>
+            <div className={cx('inner')}>
+                <Link to={routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt='Logo' />
-                    <Search />
-                    <div className={cx('actions')}>
-                        {currentUser ? (
-                            <>
-                                <Button
-                                    icon={{ at: 'left', className: `icon`, name: faPlus }}
-                                    outline
-                                    text
-                                >
-                                    Tải lên
-                                </Button>
-                                <Tippy content='Tin nhắn'>
-                                    <button className={cx('actions-btn')}>
-                                        <MessagesIcon width='26px' height='26px' />
-                                    </button>
-                                </Tippy>
-                                <Tippy content='Hộp thư'>
-                                    <button className={cx('actions-btn')}>
-                                        <InboxIcon />
-                                        {currentInbox > 0 && (
-                                            <span className={cx('badge')}>{currentInbox}</span>
-                                        )}
-                                    </button>
-                                </Tippy>
-                                <Menu items={userMenu} onChange={handleMenuChange}>
-                                    <Image
-                                        className={cx('user-avatar')}
-                                        alt=''
-                                        src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/13f5ab14e955909ef3cc0fa9c01965ef~c5_100x100.jpeg?x-expires=1661270400&x-signature=7tqLA3zjzY18PPc9MazP8gS724E%3D'
-                                    />
-                                </Menu>
-                            </>
-                        ) : (
-                            <>
-                                <Button
-                                    icon={{ at: 'left', className: `icon`, name: faPlus }}
-                                    outline
-                                    text
-                                >
-                                    Tải lên
-                                </Button>
+                </Link>
 
-                                {/* custom button add: className={cx('custom-login')} */}
-                                <Button primary>Đăng nhập</Button>
+                <Search />
 
-                                <Menu items={MENU_ITEM} onChange={handleMenuChange}>
-                                    <button className={cx('more-btn')}>
-                                        <FontAwesomeIcon icon={faEllipsisVertical} />
-                                    </button>
-                                </Menu>
-                            </>
-                        )}
-                    </div>
+                <div className={cx('actions')}>
+                    {currentUser ? (
+                        <>
+                            <Button
+                                icon={{ at: 'left', className: `icon`, name: faPlus }}
+                                outline
+                                text
+                            >
+                                Tải lên
+                            </Button>
+                            <Tippy content='Tin nhắn'>
+                                <button className={cx('actions-btn')}>
+                                    <MessagesIcon width='26px' height='26px' />
+                                </button>
+                            </Tippy>
+                            <Tippy content='Hộp thư'>
+                                <button className={cx('actions-btn')}>
+                                    <InboxIcon />
+                                    {currentInbox > 0 && (
+                                        <span className={cx('badge')}>{currentInbox}</span>
+                                    )}
+                                </button>
+                            </Tippy>
+                            <Menu items={userMenu} onChange={handleMenuChange}>
+                                <Image
+                                    className={cx('user-avatar')}
+                                    alt=''
+                                    src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/13f5ab14e955909ef3cc0fa9c01965ef~c5_100x100.jpeg?x-expires=1661270400&x-signature=7tqLA3zjzY18PPc9MazP8gS724E%3D'
+                                />
+                            </Menu>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                icon={{ at: 'left', className: `icon`, name: faPlus }}
+                                outline
+                                text
+                            >
+                                Tải lên
+                            </Button>
+
+                            {/* custom button add: className={cx('custom-login')} */}
+                            <Button primary>Đăng nhập</Button>
+
+                            <Menu items={MENU_ITEM} onChange={handleMenuChange}>
+                                <button className={cx('more-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </button>
+                            </Menu>
+                        </>
+                    )}
                 </div>
             </div>
         </header>
