@@ -8,6 +8,7 @@ import styles from './Search.module.scss'
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import { SearchIcon } from '~/components/Icons'
 import AccountItem from '~/components/AccountItem'
+import { useDebounce } from '~/hooks'
 
 const cx = className.bind(styles)
 
@@ -18,6 +19,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([])
 
     const inputRef = useRef()
+    const debounced = useDebounce(searchValue, 500)
 
     const handleClear = () => {
         setSearchValue('')
@@ -30,12 +32,12 @@ function Search() {
     }
 
     useEffect(() => {
-        if (searchValue.trim()) {
+        if (debounced.trim()) {
             setLoading(true)
 
             fetch(
                 `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                    searchValue
+                    debounced
                 )}&type=less`
             )
                 .then((res) => res.json())
@@ -44,7 +46,7 @@ function Search() {
                     setLoading(false)
                 })
         } else setSearchResult([])
-    }, [searchValue])
+    }, [debounced])
 
     return (
         <HeadlessTippy
