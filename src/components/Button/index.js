@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types'
 import className from 'classnames/bind'
 import styles from './Button.module.scss'
 
@@ -8,7 +8,6 @@ const cx = className.bind(styles)
 function Button({
     to,
     href,
-    icon = false,
     primary = false,
     outline = false,
     text = false,
@@ -16,6 +15,8 @@ function Button({
     disabled = false,
     small = false,
     large = false,
+    leftIcon,
+    rightIcon,
     className,
     onClick,
     children,
@@ -53,15 +54,28 @@ function Button({
 
     return (
         <Component className={classes} {...props}>
-            {icon.at === 'left' && (
-                <FontAwesomeIcon className={cx(icon.className || 'icon')} icon={icon.name} />
-            )}
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
             <span className={cx('title')}>{children}</span>
-            {icon.at === 'right' && (
-                <FontAwesomeIcon className={cx(icon.className || 'icon')} icon={icon.name} />
-            )}
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Component>
     )
+}
+
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
+    text: PropTypes.bool,
+    rounded: PropTypes.bool,
+    disabled: PropTypes.bool,
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.node.isRequired,
 }
 
 export default Button

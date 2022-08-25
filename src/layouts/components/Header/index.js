@@ -29,7 +29,7 @@ const cx = className.bind(styles)
 
 const MENU_ITEM = [
     {
-        icon: { at: 'left', className: 'icon', name: faEarthAsia },
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'Tiếng Việt',
         children: {
             title: 'Ngôn ngữ',
@@ -128,12 +128,12 @@ const MENU_ITEM = [
         },
     },
     {
-        icon: { at: 'left', className: 'icon', name: faQuestionCircle },
+        icon: <FontAwesomeIcon icon={faQuestionCircle} />,
         title: 'Phản hồi và trợ giúp',
         to: '/feedback',
     },
     {
-        icon: { at: 'left', className: 'icon', name: faKeyboard },
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Phím tắt trên bàn phím',
     },
 ]
@@ -152,24 +152,24 @@ function Header() {
 
     const userMenu = [
         {
-            icon: { at: 'left', className: 'icon', name: faUser },
+            icon: <FontAwesomeIcon icon={faUser} />,
             title: 'Xem hồ sơ',
             to: '/@devchau',
         },
         {
-            icon: { at: 'left', className: 'icon', name: faCoins },
+            icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Nhận xu',
             to: '/coin',
         },
         {
-            icon: { at: 'left', className: 'icon', name: faCog },
+            icon: <FontAwesomeIcon icon={faCog} />,
             title: 'Cài đặt',
             to: '/setting',
         },
 
         ...MENU_ITEM,
         {
-            icon: { at: 'left', className: 'icon', name: faSignOut },
+            icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Đăng xuất',
             to: '/logout',
             separate: true,
@@ -188,11 +188,7 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Button
-                                icon={{ at: 'left', className: `icon`, name: faPlus }}
-                                outline
-                                text
-                            >
+                            <Button leftIcon={<FontAwesomeIcon icon={faPlus} />} outline text>
                                 Tải lên
                             </Button>
                             <Tippy content='Tin nhắn'>
@@ -218,11 +214,7 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button
-                                icon={{ at: 'left', className: `icon`, name: faPlus }}
-                                outline
-                                text
-                            >
+                            <Button leftIcon={<FontAwesomeIcon icon={faPlus} />} outline text>
                                 Tải lên
                             </Button>
 
