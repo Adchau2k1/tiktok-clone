@@ -16,6 +16,7 @@
     input {
         flex: 1;
         padding: 12px 0;
+        padding-right: 42px;
         height: 100%;
         background-color: transparent;
         color: var(--black-color);
@@ -47,7 +48,7 @@ input:not(:placeholder-shown) ~ .search-btn {
 .loading {
     position: absolute;
     top: 50%;
-    right: calc(var(--search-button-width) + 16px);
+    right: calc(var(--search-button-width) + 14px);
     transform: translateY(-50%);
     font-size: 1.6rem;
     color: rgba(22, 24, 35, 0.34);

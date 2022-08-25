@@ -17,11 +17,11 @@ const cx = className.bind(styles)
 function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [loading, setLoading] = useState(false)
-    const [showResult, setShowResult] = useState(true)
+    const [showResult, setShowResult] = useState(false)
     const [searchResult, setSearchResult] = useState([])
 
     const inputRef = useRef()
-    const debounced = useDebounce(searchValue, 500)
+    const debouncedValue = useDebounce(searchValue, 500)
 
     const handleChange = (e) => {
         const searchValue = e.target.value
@@ -41,11 +41,11 @@ function Search() {
     }
 
     useEffect(() => {
-        if (debounced.trim()) {
+        if (debouncedValue.trim()) {
             const fetchApi = async () => {
                 setLoading(true)
 
-                const result = await searchService.search(debounced)
+                const result = await searchService.search(debouncedValue)
                 setSearchResult(result)
 
                 setLoading(false)
@@ -53,7 +53,7 @@ function Search() {
 
             fetchApi()
         } else setSearchResult([])
-    }, [debounced])
+    }, [debouncedValue])
 
     return (
         // Sử dụng thẻ wrapper <div> xung quanh phần tử tham chiếu
@@ -68,6 +68,9 @@ function Search() {
                     <div className={cx('search-result')} tabIndex='-1' {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('title')}>Tài khoản</h4>
+
+                            {/* Nếu vòng map mà render từ 20 item trở lên thì nên tách component 
+                            và áp dụng reacMemo để tránh render lại không cần thiết*/}
                             {searchResult.map((result) => (
                                 <AccountItem key={result.id} data={result} />
                             ))}
